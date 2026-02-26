@@ -27,9 +27,9 @@ flutter:
     - assets/lottie/
 
 flutter_native_splash:
-  color: "#121212"
+  color: "#4e55e0"
   android_12:
-    color: "#121212"
+    color: "#4e55e0"
 
 
 

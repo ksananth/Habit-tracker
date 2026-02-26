@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart' show FlutterNativeSplash;
+import 'package:flutter_native_splash/flutter_native_splash.dart'
+    show FlutterNativeSplash;
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 import 'package:habittracker/core/router/app_router.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 5),
     );
 
     _controller.addStatusListener((status) {
@@ -48,6 +49,17 @@ class _SplashScreenState extends State<SplashScreen>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                'Build Healthy Habits with us',
+                style: theme.textTheme.headlineLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
             Lottie.asset(
               'assets/lottie/splash.json',
               controller: _controller,
