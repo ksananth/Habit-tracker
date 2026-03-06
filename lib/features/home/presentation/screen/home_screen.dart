@@ -10,20 +10,8 @@ import 'package:habittracker/features/home/presentation/bloc/home_state.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  String _formatLastSync(DateTime dateTime) {
-    final now = DateTime.now();
-    final diff = now.difference(dateTime);
-
-    if (diff.inMinutes < 1) return 'Just now';
-    if (diff.inMinutes < 60) return '${diff.inMinutes} min ago';
-    if (diff.inHours < 24) return '${diff.inHours} hours ago';
-    if (diff.inDays == 1) return 'Yesterday';
-
-    return '${dateTime.day.toString().padLeft(2, '0')}/'
-        '${dateTime.month.toString().padLeft(2, '0')}/'
-        '${dateTime.year} at '
-        '${dateTime.hour.toString().padLeft(2, '0')}:'
-        '${dateTime.minute.toString().padLeft(2, '0')}';
+  String _formatLastSync(DateTime dt) {
+    return '${dt.day}/${dt.month}/${dt.year} ${dt.hour}:${dt.minute.toString().padLeft(2, '0')}';
   }
 
   @override
