@@ -2,32 +2,19 @@ import 'package:habittracker/core/data/repositories/domain/attendance.dart' as d
 import 'package:habittracker/core/data/models/attendance_entity.dart' as model;
 import 'package:habittracker/core/data/models/habit_entity.dart';
 import 'package:habittracker/objectbox.g.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AttendanceRepository {
-  Future<DateTime?> getLastSync();
   Future<List<domain.Attendance>> getAttendance(int habitId);
   Future<void> putAttendance(int habitId, DateTime date);
-}
+  Future<DateTime?> getLastAttendanceDate();}
 
 class AttendanceRepositoryImpl implements AttendanceRepository {
   final Box<model.Attendance> _attendanceBox;
   final Box<HabitE> _habitBox;
 
-  static const _lastSyncKey = 'last_sync';
-
   AttendanceRepositoryImpl(Store store)
       : _attendanceBox = store.box<model.Attendance>(),
         _habitBox = store.box<HabitE>();
-
-  @override
-  Future<DateTime?> getLastSync() async {
-    final prefs = await SharedPreferences.getInstance();
-    final timestamp = prefs.getInt(_lastSyncKey);
-    return timestamp != null
-        ? DateTime.fromMillisecondsSinceEpoch(timestamp)
-        : null;
-  }
 
   @override
   Future<List<domain.Attendance>> getAttendance(int habitId) async {
@@ -43,6 +30,21 @@ class AttendanceRepositoryImpl implements AttendanceRepository {
     if (habit != null) {
       final attendance = model.Attendance(date: date)..habit.target = habit;
       _attendanceBox.put(attendance);
+    }
+  }
+
+  @override
+  Future<DateTime?> getLastAttendanceDate() async {
+    final query = _attendanceBox
+        .query()
+        .order(Attendance_.date, flags: Order.descending) // newest first
+        .build();
+
+    try {
+      final latest = query.findFirst();
+      return latest?.date;
+    } finally {
+      query.close();
     }
   }
 
