@@ -1,12 +1,14 @@
-import 'package:habittracker/core/data/repositories/attendance_repository.dart';
+import 'package:habittracker/core/data/repositories/domain/habit.dart';
+
+import '../../../core/data/repositories/habit_repository.dart';
 
 class GetDashboardUseCase {
 
-  final AttendanceRepository _repository;
+  final HabitRepository _repository;
 
   GetDashboardUseCase(this._repository);
 
-  Future<DateTime?> call() => _repository.getLastAttendanceDate();
+  Future<List<Habit>?> call() => _repository.getAll();
 
 
 }

@@ -26,6 +26,9 @@ Future<void> configureDependencies() async {
   getIt.registerLazySingleton<GetLastAttendanceUseCase>(
     () => GetLastAttendanceUseCase(getIt<AttendanceRepository>()),
   );
+  getIt.registerLazySingleton<GetDashboardUseCase>(
+        () => GetDashboardUseCase(getIt<HabitRepository>()),
+  );
 
   // Blocs
   getIt.registerFactory<HomeBloc>(

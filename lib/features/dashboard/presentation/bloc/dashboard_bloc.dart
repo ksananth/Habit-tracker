@@ -19,7 +19,11 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     emit(const DashboardLoading());
     try {
       final response = await _getDashboardUseCase();
-      emit(DashboardLoaded(List.empty()));
+      if (response == null || response.isEmpty) {
+        emit(DashboardEmpty());
+      } else {
+        emit(DashboardLoaded(response));
+      }
     } catch (e) {
       emit(DashboardError(e.toString()));
     }
