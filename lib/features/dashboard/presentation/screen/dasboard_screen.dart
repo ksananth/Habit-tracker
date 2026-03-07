@@ -55,7 +55,7 @@ class DashboardScreen extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () => context.push(AppRoutes.addHabit),
                     icon: const Icon(Icons.add),
                     label: const Text('Add new Habit'),
                     style: ElevatedButton.styleFrom(

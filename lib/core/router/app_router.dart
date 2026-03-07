@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:habittracker/features/add_habit/presentation/screen/add_habit_screen.dart';
 import 'package:habittracker/features/dashboard/presentation/screen/dasboard_screen.dart';
 import 'package:habittracker/features/splash/splash_screen.dart';
 import 'package:habittracker/features/home/presentation/screen/home_screen.dart';
@@ -7,6 +8,7 @@ abstract class AppRoutes {
   static const splash = '/';
   static const home = '/home';
   static const dashboard = '/dashboard';
+  static const addHabit = '/add-habit';
 }
 
 final appRouter = GoRouter(
@@ -23,6 +25,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.dashboard,
       builder: (context, state) => const DashboardScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.addHabit,
+      builder: (context, state) => const AddHabitScreen(),
     ),
   ],
 );
