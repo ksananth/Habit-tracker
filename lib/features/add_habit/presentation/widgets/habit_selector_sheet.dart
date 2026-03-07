@@ -1,34 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habittracker/core/theme/app_colors.dart';
-
-const List<String> kHabitOptions = [
-  'Exercise',
-  'Reading',
-  'Meditation',
-  'Journaling',
-  'Hydration',
-  'Sleep',
-  'Healthy Eating',
-  'Learning',
-  'Walking',
-  'Stretching',
-];
+import 'package:habittracker/features/add_habit/domain/habit_type.dart';
+import 'package:habittracker/features/add_habit/presentation/bloc/add_habit_bloc.dart';
+import 'package:habittracker/features/add_habit/presentation/bloc/add_habit_event.dart';
 
 class HabitSelectorSheet extends StatelessWidget {
-  final String? selected;
-  final ValueChanged<String> onSelected;
-
-  const HabitSelectorSheet({
-    super.key,
-    required this.selected,
-    required this.onSelected,
-  });
+  const HabitSelectorSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+    final selected = context.read<AddHabitBloc>().state.selectedHabitType;
+    return DraggableScrollableSheet(
+      expand: false,
+      builder: (context, scrollController) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
@@ -42,30 +27,32 @@ class HabitSelectorSheet extends StatelessWidget {
               ),
             ),
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: kHabitOptions.length,
-            itemBuilder: (context, index) {
-              final habit = kHabitOptions[index];
-              final isSelected = habit == selected;
-              return ListTile(
-                title: Text(
-                  habit,
-                  style: TextStyle(
-                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                    color: AppColors.dark,
+          Expanded(
+            child: ListView.builder(
+              controller: scrollController,
+              itemCount: HabitType.values.length,
+              itemBuilder: (context, index) {
+                final habit = HabitType.values[index];
+                final isSelected = selected == habit;
+                return ListTile(
+                  leading: Icon(habit.icon, color: AppColors.dark),
+                  title: Text(
+                    habit.label,
+                    style: TextStyle(
+                      fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                      color: AppColors.dark,
+                    ),
                   ),
-                ),
-                trailing: isSelected
-                    ? const Icon(Icons.check_circle, color: AppColors.primary)
-                    : null,
-                onTap: () {
-                  onSelected(habit);
-                  Navigator.pop(context);
-                },
-              );
-            },
+                  trailing: isSelected
+                      ? const Icon(Icons.check_circle, color: AppColors.primary)
+                      : null,
+                  onTap: () {
+                    context.read<AddHabitBloc>().add(SelectHabitType(habit));
+                    Navigator.pop(context);
+                  },
+                );
+              },
+            ),
           ),
           const SizedBox(height: 8),
         ],

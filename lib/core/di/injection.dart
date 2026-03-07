@@ -1,10 +1,12 @@
 import 'package:get_it/get_it.dart';
 import 'package:habittracker/core/data/repositories/attendance_repository.dart';
 import 'package:habittracker/core/data/repositories/habit_repository.dart';
+import 'package:habittracker/features/add_habit/usecase/add_habit_usecase.dart';
 import 'package:habittracker/features/home/usecases/get_last_attendance_usecase.dart';
 import 'package:habittracker/features/home/presentation/bloc/home_bloc.dart';
 import 'package:habittracker/objectbox.g.dart';
 
+import '../../features/add_habit/presentation/bloc/add_habit_bloc.dart';
 import '../../features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import '../../features/dashboard/usecase/get_dashboard_usecase.dart';
 
@@ -29,6 +31,9 @@ Future<void> configureDependencies() async {
   getIt.registerLazySingleton<GetDashboardUseCase>(
         () => GetDashboardUseCase(getIt<HabitRepository>()),
   );
+  getIt.registerLazySingleton<AddHabitUseCase>(
+        () => AddHabitUseCase(getIt<HabitRepository>()),
+  );
 
   // Blocs
   getIt.registerFactory<HomeBloc>(
@@ -37,5 +42,8 @@ Future<void> configureDependencies() async {
 
   getIt.registerFactory<DashboardBloc>(
         () => DashboardBloc(getIt<GetDashboardUseCase>()),
+  );
+  getIt.registerFactory<AddHabitBloc>(
+        () => AddHabitBloc(getIt<AddHabitUseCase>()),
   );
 }

@@ -6,7 +6,7 @@ class Habit {
   final DateTime? endDate;
 
   const Habit({
-    required this.id,
+    this.id = 0,
     required this.name,
     this.createdDate,
     required this.startDate,
