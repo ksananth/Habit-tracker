@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:habittracker/core/di/injection.dart';
+import 'package:habittracker/core/router/app_router.dart';
 import 'package:habittracker/core/theme/app_colors.dart';
 import 'package:habittracker/features/home/presentation/bloc/home_bloc.dart';
 import 'package:habittracker/features/home/presentation/bloc/home_event.dart';
@@ -111,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 56,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => context.go(AppRoutes.dashboard),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.buttonPrimary,
                       foregroundColor: AppColors.buttonText,
