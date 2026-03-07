@@ -16,15 +16,15 @@ class AddHabitScreen extends StatelessWidget {
       '${dt.day.toString().padLeft(2, '0')}/${dt.month.toString().padLeft(2, '0')}/${dt.year}';
 
   void _saveHabit(BuildContext context, AddHabitState state) {
+    final navigator = Navigator.of(context);
+    final messenger = ScaffoldMessenger.of(context);
     context.read<AddHabitBloc>().add(
       SaveHabit(
         state.selectedHabitType!,
         state.fromDate!,
         state.toDate!,
-        onSuccess: () => context.pop(true),
-        onError: (e) => ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(e))),
+        onSuccess: () => navigator.pop(true),
+        onError: (e) => messenger.showSnackBar(SnackBar(content: Text(e))),
       ),
     );
   }
