@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:habittracker/features/home/domain/usecases/get_last_attendance_usecase.dart';
+import 'package:habittracker/features/home/usecases/get_last_attendance_usecase.dart';
 import 'package:habittracker/features/home/presentation/bloc/home_event.dart';
 import 'package:habittracker/features/home/presentation/bloc/home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetLastAttendanceUseCase _getLastAttendanceUseCase;
 
-  HomeBloc(this._getLastAttendanceUseCase) : super(const HomeInitial()) {
+  HomeBloc(this._getLastAttendanceUseCase) : super(const HomeLoading()) {
     on<LoadLastSync>(_onLoadLastSync);
   }
 
