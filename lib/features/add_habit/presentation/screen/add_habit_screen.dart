@@ -8,6 +8,8 @@ import 'package:habittracker/features/add_habit/presentation/bloc/add_habit_bloc
 import 'package:habittracker/features/add_habit/presentation/bloc/add_habit_event.dart';
 import 'package:habittracker/features/add_habit/presentation/bloc/add_habit_state.dart';
 import 'package:habittracker/features/add_habit/presentation/widgets/habit_selector_sheet.dart';
+import 'package:habittracker/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:habittracker/features/dashboard/presentation/bloc/dashboard_event.dart';
 
 class AddHabitScreen extends StatelessWidget {
   const AddHabitScreen({super.key});
@@ -16,14 +18,17 @@ class AddHabitScreen extends StatelessWidget {
       '${dt.day.toString().padLeft(2, '0')}/${dt.month.toString().padLeft(2, '0')}/${dt.year}';
 
   void _saveHabit(BuildContext context, AddHabitState state) {
-    final navigator = Navigator.of(context);
+    final router = GoRouter.of(context);
     final messenger = ScaffoldMessenger.of(context);
     context.read<AddHabitBloc>().add(
       SaveHabit(
         state.selectedHabitType!,
         state.fromDate!,
         state.toDate!,
-        onSuccess: () => navigator.pop(true),
+        onSuccess: () {
+          getIt<DashboardBloc>().add(LoadHabit());
+          router.pop();
+        },
         onError: (e) => messenger.showSnackBar(SnackBar(content: Text(e))),
       ),
     );

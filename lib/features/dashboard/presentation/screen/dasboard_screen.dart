@@ -13,14 +13,12 @@ import 'package:habittracker/features/dashboard/presentation/widgets/habit_list.
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
-  void _reload(BuildContext context) {
-    context.read<DashboardBloc>().add(LoadHabit());
-  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<DashboardBloc>()..add(LoadHabit()),
+    final bloc = getIt<DashboardBloc>()..add(LoadHabit());
+    return BlocProvider.value(
+      value: bloc,
       child: Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppBar(
@@ -59,10 +57,7 @@ class DashboardScreen extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () async {
-                      final added = await context.push<bool>(AppRoutes.addHabit);
-                      if (added == true && context.mounted) _reload(context);
-                    },
+                    onPressed: () => context.push(AppRoutes.addHabit),
                     icon: const Icon(Icons.add),
                     label: const Text('Add new Habit'),
                     style: ElevatedButton.styleFrom(

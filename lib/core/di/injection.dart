@@ -40,7 +40,7 @@ Future<void> configureDependencies() async {
     () => HomeBloc(getIt<GetLastAttendanceUseCase>()),
   );
 
-  getIt.registerFactory<DashboardBloc>(
+  getIt.registerLazySingleton<DashboardBloc>(
         () => DashboardBloc(getIt<GetDashboardUseCase>()),
   );
   getIt.registerFactory<AddHabitBloc>(
