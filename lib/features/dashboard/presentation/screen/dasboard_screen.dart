@@ -10,15 +10,26 @@ import 'package:habittracker/features/dashboard/presentation/bloc/dashboard_stat
 import 'package:habittracker/features/dashboard/presentation/widgets/dashboard_empty.dart' show DashboardEmptyView;
 import 'package:habittracker/features/dashboard/presentation/widgets/habit_list.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  late final DashboardBloc _bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc = getIt<DashboardBloc>()..add(LoadHabit());
+  }
 
   @override
   Widget build(BuildContext context) {
-    final bloc = getIt<DashboardBloc>()..add(LoadHabit());
     return BlocProvider.value(
-      value: bloc,
+      value: _bloc,
       child: Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppBar(

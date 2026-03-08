@@ -31,5 +31,5 @@ class SaveHabit extends AddHabitEvent {
   final VoidCallback onSuccess;
   final void Function(String) onError;
 
-  const SaveHabit(this.habitType, this.from, this.to, {required this.onSuccess, required this.onError});
+  SaveHabit(this.habitType, this.from, this.to, {required this.onSuccess, required this.onError});
 }

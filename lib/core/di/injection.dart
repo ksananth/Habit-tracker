@@ -9,6 +9,7 @@ import 'package:habittracker/objectbox.g.dart';
 import '../../features/add_habit/presentation/bloc/add_habit_bloc.dart';
 import '../../features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import '../../features/dashboard/usecase/get_dashboard_usecase.dart';
+import '../../features/habit_attendance/usecase/get_habit_attendance_usecase.dart';
 
 final getIt = GetIt.instance;
 
@@ -30,6 +31,9 @@ Future<void> configureDependencies() async {
   );
   getIt.registerLazySingleton<GetDashboardUseCase>(
         () => GetDashboardUseCase(getIt<HabitRepository>()),
+  );
+  getIt.registerLazySingleton<GetHabitAttendanceUseCase>(
+        () => GetHabitAttendanceUseCase(getIt<AttendanceRepository>()),
   );
   getIt.registerLazySingleton<AddHabitUseCase>(
         () => AddHabitUseCase(getIt<HabitRepository>()),
