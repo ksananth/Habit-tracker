@@ -1,24 +1,45 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habittracker/features/habit_attendance/presentation/bloc/habit_attendance_event.dart';
 import 'package:habittracker/features/habit_attendance/presentation/bloc/habit_attendance_state.dart';
+import 'package:habittracker/features/habit_attendance/usecase/get_habit_attendance_usecase.dart';
+import 'package:habittracker/features/habit_attendance/usecase/put_attendance_usecase.dart';
 
-import '../../usecase/get_habit_attendance_usecase.dart';
-import 'habit_attendance_event.dart';
+class HabitAttendanceBloc extends Bloc<HabitAttendanceEvent, HabitAttendanceState> {
+  final GetHabitAttendanceUseCase _getAttendance;
+  final PutAttendanceUseCase _putAttendance;
 
-class HabitAttendanceBloc
-    extends Bloc<HabitAttendanceEvent, HabitAttendanceState> {
-  final GetHabitAttendanceUseCase _getHabitAttendanceUseCase;
-
-  HabitAttendanceBloc(this._getHabitAttendanceUseCase)
-    : super(HabitAttendanceLoading()) {
-    on<PutAttendance>(_onPutAttendance);
+  HabitAttendanceBloc(this._getAttendance, this._putAttendance)
+      : super(HabitAttendanceState(isLoading: true)) {
+    on<LoadAttendance>(_onLoad);
+    on<MarkAttendance>(_onMark);
   }
 
-  Future<void> _onPutAttendance(
-    PutAttendance event,
-    Emitter<HabitAttendanceState> emit,
-  ) async {
+  Future<void> _onLoad(LoadAttendance event, Emitter<HabitAttendanceState> emit) async {
+    emit(state.copyWith(isLoading: true, clearError: true));
     try {
-      final response = await _getHabitAttendanceUseCase(1);
-    } catch (e) { }
+      final attendances = await _getAttendance(event.habitId);
+      final today = DateTime.now();
+      final isTodayMarked = attendances.any((a) =>
+          a.date.year == today.year &&
+          a.date.month == today.month &&
+          a.date.day == today.day);
+      emit(state.copyWith(
+        attendances: attendances,
+        isLoading: false,
+        isTodayMarked: isTodayMarked,
+      ));
+    } catch (e) {
+      emit(state.copyWith(isLoading: false, error: e.toString()));
+    }
+  }
+
+  Future<void> _onMark(MarkAttendance event, Emitter<HabitAttendanceState> emit) async {
+    emit(state.copyWith(isLoading: true));
+    try {
+      await _putAttendance(event.habitId, DateTime.now());
+      add(LoadAttendance(event.habitId));
+    } catch (e) {
+      emit(state.copyWith(isLoading: false, error: e.toString()));
+    }
   }
 }

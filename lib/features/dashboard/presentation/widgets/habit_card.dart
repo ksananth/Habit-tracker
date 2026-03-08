@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habittracker/core/data/repositories/domain/habit.dart';
+import 'package:habittracker/core/router/app_router.dart';
 import 'package:habittracker/core/theme/app_colors.dart';
 
 class HabitCard extends StatelessWidget {
@@ -9,7 +11,9 @@ class HabitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () => context.push(AppRoutes.habitAttendancePath(habit.id)),
+      child: Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.cardLight,
@@ -31,6 +35,7 @@ class HabitCard extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }
