@@ -45,8 +45,6 @@ lib/
 | Dependency injection | `get_it` — blocs as factory, shared blocs as lazy singleton |
 | Navigation | `go_router` with path parameters |
 | Local database | ObjectBox |
-| Fonts | Poppins (bundled in `assets/fonts/`) |
-| Strings | `AppStrings` abstract class — ready for `intl` localisation |
 
 ---
 
@@ -92,6 +90,3 @@ flutter run
 ```bash
 flutter build apk --release
 ```
-
-> Ensure `android/key.properties` exists with your keystore credentials before building a release.
-> See `android/app/build.gradle.kts` for signing configuration.
