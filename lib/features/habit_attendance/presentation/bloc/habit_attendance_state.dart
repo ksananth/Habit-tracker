@@ -1,7 +1,7 @@
-import 'package:habittracker/core/data/repositories/domain/attendance.dart';
+import 'package:habittracker/features/habit_attendance/usecase/get_habit_attendance_usecase.dart';
 
 class HabitAttendanceState {
-  final List<Attendance> attendances;
+  final List<AttendanceUI> attendances;
   final bool isLoading;
   final bool isTodayMarked;
   final String? error;
@@ -14,7 +14,8 @@ class HabitAttendanceState {
   });
 
   HabitAttendanceState copyWith({
-    List<Attendance>? attendances,
+    List<AttendanceUI>? attendances,
+    DateTime? startDate,
     bool? isLoading,
     bool? isTodayMarked,
     String? error,

@@ -6,13 +6,12 @@ import 'package:habittracker/features/habit_attendance/presentation/bloc/habit_a
 import 'package:habittracker/features/habit_attendance/presentation/bloc/habit_attendance_event.dart';
 import 'package:habittracker/features/habit_attendance/presentation/bloc/habit_attendance_state.dart';
 
+import '../widget/attendance_list.dart';
+
 class HabitAttendanceScreen extends StatelessWidget {
   final int habitId;
 
   const HabitAttendanceScreen({super.key, required this.habitId});
-
-  String _formatDate(DateTime dt) =>
-      '${dt.day.toString().padLeft(2, '0')}/${dt.month.toString().padLeft(2, '0')}/${dt.year}';
 
   @override
   Widget build(BuildContext context) {
@@ -95,49 +94,9 @@ class HabitAttendanceScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
-                if (state.attendances.isEmpty)
-                  const Expanded(
-                    child: Center(
-                      child: Text(
-                        'No activity logged yet.',
-                        style: TextStyle(color: AppColors.muted, fontSize: 14),
-                      ),
-                    ),
-                  )
-                else
-                  Expanded(
-                    child: ListView.separated(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      itemCount: state.attendances.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 8),
-                      itemBuilder: (context, index) {
-                        final attendance = state.attendances[index];
-                        return Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 14),
-                          decoration: BoxDecoration(
-                            color: AppColors.cardLight,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(Icons.calendar_today_outlined,
-                                  size: 18, color: AppColors.primary),
-                              const SizedBox(width: 12),
-                              Text(
-                                _formatDate(attendance.date),
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.dark,
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                AttendanceList(
+                  attendances: state.attendances
+                ),
               ],
             );
           },

@@ -1,15 +1,15 @@
 class Habit {
   final int id;
   final String name;
-  final DateTime? createdDate;
+  final DateTime createdDate;
   final DateTime startDate;
-  final DateTime? endDate;
+  final DateTime endDate;
 
   const Habit({
     this.id = 0,
     required this.name,
-    this.createdDate,
+    required this.createdDate,
     required this.startDate,
-    this.endDate,
+    required this.endDate,
   });
 }

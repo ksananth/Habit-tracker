@@ -47,9 +47,9 @@ class HabitRepositoryImpl implements HabitRepository {
     return Habit(
       id: entity.id,
       name: entity.name,
-      createdDate: entity.createdDate,
+      createdDate: entity.createdDate ?? DateTime.now(),
       startDate: entity.startDate,
-      endDate: entity.endDate,
+      endDate: entity.endDate ?? entity.startDate,
     );
   }
 }

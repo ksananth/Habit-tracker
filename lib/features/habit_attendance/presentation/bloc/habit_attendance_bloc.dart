@@ -18,11 +18,7 @@ class HabitAttendanceBloc extends Bloc<HabitAttendanceEvent, HabitAttendanceStat
     emit(state.copyWith(isLoading: true, clearError: true));
     try {
       final attendances = await _getAttendance(event.habitId);
-      final today = DateTime.now();
-      final isTodayMarked = attendances.any((a) =>
-          a.date.year == today.year &&
-          a.date.month == today.month &&
-          a.date.day == today.day);
+      final isTodayMarked = attendances.any((a) => !a.isFutureDate && a.isAttendanceMarked);
       emit(state.copyWith(
         attendances: attendances,
         isLoading: false,

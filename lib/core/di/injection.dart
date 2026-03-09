@@ -11,6 +11,7 @@ import '../../features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import '../../features/dashboard/usecase/get_dashboard_usecase.dart';
 import '../../features/habit_attendance/presentation/bloc/habit_attendance_bloc.dart';
 import '../../features/habit_attendance/usecase/get_habit_attendance_usecase.dart';
+import '../../features/habit_attendance/usecase/get_habit_name_usecase.dart';
 import '../../features/habit_attendance/usecase/put_attendance_usecase.dart';
 
 final getIt = GetIt.instance;
@@ -35,13 +36,16 @@ Future<void> configureDependencies() async {
         () => GetDashboardUseCase(getIt<HabitRepository>()),
   );
   getIt.registerLazySingleton<GetHabitAttendanceUseCase>(
-        () => GetHabitAttendanceUseCase(getIt<AttendanceRepository>()),
+        () => GetHabitAttendanceUseCase(getIt<AttendanceRepository>(), getIt<HabitRepository>()),
   );
   getIt.registerLazySingleton<AddHabitUseCase>(
         () => AddHabitUseCase(getIt<HabitRepository>()),
   );
   getIt.registerLazySingleton<PutAttendanceUseCase>(
         () => PutAttendanceUseCase(getIt<AttendanceRepository>()),
+  );
+  getIt.registerLazySingleton<GetHabitNameUseCase>(
+        () => GetHabitNameUseCase(getIt<HabitRepository>()),
   );
 
   // Blocs
