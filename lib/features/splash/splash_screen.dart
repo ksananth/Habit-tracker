@@ -44,21 +44,11 @@ class _SplashScreenState extends State<SplashScreen>
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: const Color(0xFFF6F1F1),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
-                'Build Healthy Habits with us',
-                style: theme.textTheme.headlineLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
             const SizedBox(height: 16),
             Lottie.asset(
               'assets/lottie/splash.json',
@@ -71,10 +61,17 @@ class _SplashScreenState extends State<SplashScreen>
               },
             ),
             const SizedBox(height: 24),
-            Text(
-              'Habit Tracker',
-              style: theme.textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Center(
+                child: Text(
+                  'Track Productivity & Healthy Habits ',
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.headlineLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
               ),
             ),
           ],
