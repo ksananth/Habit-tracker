@@ -9,6 +9,7 @@ import 'package:habittracker/features/add_habit/presentation/bloc/add_habit_even
 import 'package:habittracker/features/add_habit/presentation/bloc/add_habit_state.dart';
 import 'package:habittracker/features/add_habit/presentation/widgets/habit_selector_sheet.dart';
 import 'package:habittracker/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:habittracker/core/constants/app_strings.dart';
 import 'package:habittracker/features/dashboard/presentation/bloc/dashboard_event.dart';
 
 class AddHabitScreen extends StatelessWidget {
@@ -81,7 +82,7 @@ class AddHabitScreen extends StatelessWidget {
             backgroundColor: AppColors.white,
             appBar: AppBar(
               title: const Text(
-                'Add New Habit',
+                AppStrings.addNewHabitTitle,
                 style: TextStyle(
                   fontWeight: FontWeight.w800,
                   color: AppColors.dark,
@@ -97,11 +98,11 @@ class AddHabitScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Habit', style: _labelStyle),
+                      const Text(AppStrings.habit, style: _labelStyle),
                       const SizedBox(height: 8),
                       _FieldTile(
                         label:
-                            state.selectedHabitType?.label ?? 'Select a habit',
+                            state.selectedHabitType?.label ?? AppStrings.selectAHabit,
                         isSelected: state.selectedHabitType != null,
                         icon:
                             state.selectedHabitType?.icon ??
@@ -110,24 +111,24 @@ class AddHabitScreen extends StatelessWidget {
                         onTap: () => _showHabitSelector(context),
                       ),
                       const SizedBox(height: 20),
-                      const Text('Start Date', style: _labelStyle),
+                      const Text(AppStrings.startDate, style: _labelStyle),
                       const SizedBox(height: 8),
                       _FieldTile(
                         label: state.fromDate != null
                             ? _formatDate(state.fromDate!)
-                            : 'Select start date',
+                            : AppStrings.selectStartDate,
                         isSelected: state.fromDate != null,
                         icon: Icons.calendar_today_outlined,
                         enabled: state.isFromDateEnabled,
                         onTap: () => _pickFromDate(context),
                       ),
                       const SizedBox(height: 20),
-                      const Text('End Date', style: _labelStyle),
+                      const Text(AppStrings.endDate, style: _labelStyle),
                       const SizedBox(height: 8),
                       _FieldTile(
                         label: state.toDate != null
                             ? _formatDate(state.toDate!)
-                            : 'Select end date',
+                            : AppStrings.selectEndDate,
                         isSelected: state.toDate != null,
                         icon: Icons.event_outlined,
                         enabled: state.isToDateEnabled,
@@ -163,7 +164,7 @@ class AddHabitScreen extends StatelessWidget {
                       ),
                     ),
                     child: const Text(
-                      'Create Habit',
+                      AppStrings.createHabit,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,

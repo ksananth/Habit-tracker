@@ -55,7 +55,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: OutlinedButton.icon(
                     onPressed: () => context.go(AppRoutes.home),
                     icon: const Icon(Icons.home_outlined),
-                    label: const Text('Home'),
+                    label: const Text(AppStrings.home),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.dark,
                       side: const BorderSide(color: AppColors.dark),
@@ -71,7 +71,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: ElevatedButton.icon(
                     onPressed: () => context.push(AppRoutes.addHabit),
                     icon: const Icon(Icons.add),
-                    label: const Text('Add new Habit'),
+                    label: const Text(AppStrings.addNewHabit),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.dark,
                       foregroundColor: AppColors.white,

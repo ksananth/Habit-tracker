@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habittracker/core/constants/app_strings.dart';
 import 'package:habittracker/core/theme/app_colors.dart';
 import 'package:habittracker/features/add_habit/domain/habit_type.dart';
 import 'package:habittracker/features/add_habit/presentation/bloc/add_habit_bloc.dart';
@@ -19,7 +20,7 @@ class HabitSelectorSheet extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.fromLTRB(20, 20, 20, 12),
             child: Text(
-              'Select a Habit',
+              AppStrings.selectAHabitSheet,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w800,

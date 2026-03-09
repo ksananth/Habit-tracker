@@ -4,6 +4,7 @@ import 'package:habittracker/core/di/injection.dart';
 import 'package:habittracker/core/theme/app_colors.dart';
 import 'package:habittracker/features/habit_attendance/presentation/bloc/habit_attendance_bloc.dart';
 import 'package:habittracker/features/habit_attendance/presentation/bloc/habit_attendance_event.dart';
+import 'package:habittracker/core/constants/app_strings.dart';
 import 'package:habittracker/features/habit_attendance/presentation/bloc/habit_attendance_state.dart';
 
 import '../widget/attendance_list.dart';
@@ -21,7 +22,7 @@ class HabitAttendanceScreen extends StatelessWidget {
         backgroundColor: AppColors.white,
         appBar: AppBar(
           title: const Text(
-            'Attendance',
+            AppStrings.attendance,
             style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.dark),
           ),
           backgroundColor: AppColors.white,
@@ -47,7 +48,7 @@ class HabitAttendanceScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 24, 20, 8),
                   child: Text(
-                    'Mark your activity here to indicate that you performed your task today.',
+                    AppStrings.markActivityDescription,
                     style: const TextStyle(
                       fontSize: 15,
                       color: AppColors.muted,
@@ -73,8 +74,8 @@ class HabitAttendanceScreen extends StatelessWidget {
                           : Icons.check_circle_outline),
                       label: Text(
                         state.isTodayMarked
-                            ? 'Already accomplished today!'
-                            : 'Yes, I accomplished this task today',
+                            ? AppStrings.alreadyAccomplished
+                            : AppStrings.accomplishToday,
                         style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,

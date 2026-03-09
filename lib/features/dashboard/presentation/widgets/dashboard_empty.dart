@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habittracker/core/constants/app_strings.dart';
 import 'package:habittracker/core/theme/app_colors.dart';
 
 class DashboardEmptyView extends StatelessWidget {
@@ -13,7 +14,7 @@ class DashboardEmptyView extends StatelessWidget {
           Icon(Icons.inbox_outlined, size: 96, color: AppColors.muted),
           SizedBox(height: 16),
           Text(
-            'No habits yet',
+            AppStrings.noHabitsYet,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
@@ -22,7 +23,7 @@ class DashboardEmptyView extends StatelessWidget {
           ),
           SizedBox(height: 8),
           Text(
-            'Add a habit to start tracking',
+            AppStrings.addHabitToStart,
             style: TextStyle(fontSize: 14, color: AppColors.muted),
           ),
         ],
