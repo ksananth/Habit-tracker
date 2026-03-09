@@ -10,6 +10,7 @@ import 'package:habittracker/features/dashboard/presentation/bloc/dashboard_stat
 import 'package:habittracker/features/dashboard/presentation/widgets/dashboard_empty.dart' show DashboardEmptyView;
 import 'package:habittracker/core/constants/app_strings.dart';
 import 'package:habittracker/features/dashboard/presentation/widgets/habit_list.dart';
+import 'package:habittracker/features/dashboard/presentation/widgets/sort_sheet.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -42,7 +43,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
           elevation: 0,
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () => showModalBottomSheet(
+            context: context,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+            ),
+            builder: (_) => BlocProvider.value(
+              value: _bloc,
+              child: const SortSheet(),
+            ),
+          ),
           backgroundColor: AppColors.dark,
           child: const Icon(Icons.filter_list, color: AppColors.white),
         ),
