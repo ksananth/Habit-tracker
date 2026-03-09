@@ -1,4 +1,4 @@
-package com.app.habittracker
+package com.kraftanapp.habittracker
 
 import io.flutter.embedding.android.FlutterActivity
 
