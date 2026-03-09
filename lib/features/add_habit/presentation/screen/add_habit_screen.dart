@@ -79,17 +79,8 @@ class AddHabitScreen extends StatelessWidget {
       child: BlocBuilder<AddHabitBloc, AddHabitState>(
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: AppColors.white,
             appBar: AppBar(
-              title: const Text(
-                AppStrings.addNewHabitTitle,
-                style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.dark,
-                ),
-              ),
-              backgroundColor: AppColors.white,
-              elevation: 0,
+              title: const Text(AppStrings.addNewHabitTitle),
             ),
             body: Stack(
               children: [
@@ -155,21 +146,9 @@ class AddHabitScreen extends StatelessWidget {
                         ? () => _saveHabit(context, state)
                         : null,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.dark,
-                      foregroundColor: AppColors.white,
                       disabledBackgroundColor: AppColors.muted,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
                     ),
-                    child: const Text(
-                      AppStrings.createHabit,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                    child: const Text(AppStrings.createHabit),
                   ),
                 ),
               ),

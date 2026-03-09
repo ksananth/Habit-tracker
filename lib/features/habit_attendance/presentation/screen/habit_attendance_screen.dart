@@ -19,14 +19,8 @@ class HabitAttendanceScreen extends StatelessWidget {
     return BlocProvider(
       create: (_) => getIt<HabitAttendanceBloc>()..add(LoadAttendance(habitId)),
       child: Scaffold(
-        backgroundColor: AppColors.white,
         appBar: AppBar(
-          title: const Text(
-            AppStrings.attendance,
-            style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.dark),
-          ),
-          backgroundColor: AppColors.white,
-          elevation: 0,
+          title: const Text(AppStrings.attendance),
         ),
         body: BlocBuilder<HabitAttendanceBloc, HabitAttendanceState>(
           builder: (context, state) {
@@ -82,14 +76,7 @@ class HabitAttendanceScreen extends StatelessWidget {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: state.isTodayMarked
-                            ? AppColors.muted
-                            : AppColors.dark,
-                        foregroundColor: AppColors.white,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
+                        disabledBackgroundColor: AppColors.muted,
                       ),
                     ),
                   ),

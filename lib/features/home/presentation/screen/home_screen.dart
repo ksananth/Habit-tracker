@@ -22,7 +22,6 @@ class HomeScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<HomeBloc>()..add(const LoadLastSync()),
       child: Scaffold(
-        backgroundColor: AppColors.lime,
         body: SafeArea(
           child: Column(
             children: [
@@ -115,18 +114,7 @@ class HomeScreen extends StatelessWidget {
                   height: 56,
                   child: ElevatedButton(
                     onPressed: () => context.go(AppRoutes.dashboard),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.buttonPrimary,
-                      foregroundColor: AppColors.buttonText,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    child: const Text(
-                      AppStrings.logActivity,
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                    ),
+                    child: const Text(AppStrings.logActivity),
                   ),
                 ),
               ),

@@ -44,7 +44,6 @@ class _SplashScreenState extends State<SplashScreen>
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F1F1),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

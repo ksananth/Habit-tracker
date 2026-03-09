@@ -33,14 +33,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return BlocProvider.value(
       value: _bloc,
       child: Scaffold(
-        backgroundColor: AppColors.white,
         appBar: AppBar(
-          title: const Text(
-            AppStrings.myHabits,
-            style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.dark),
-          ),
-          backgroundColor: AppColors.white,
-          elevation: 0,
+          title: const Text(AppStrings.myHabits),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () => showModalBottomSheet(
@@ -67,12 +61,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     icon: const Icon(Icons.home_outlined),
                     label: const Text(AppStrings.home),
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: AppColors.dark,
-                      side: const BorderSide(color: AppColors.dark),
                       padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
                     ),
                   ),
                 ),
@@ -83,13 +72,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     icon: const Icon(Icons.add),
                     label: const Text(AppStrings.addNewHabit),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.dark,
-                      foregroundColor: AppColors.white,
-                      elevation: 0,
                       padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
                     ),
                   ),
                 ),
