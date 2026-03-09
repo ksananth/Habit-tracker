@@ -52,11 +52,11 @@ lib/
 
 | Home | Dashboard | Add Habit |
 |---|---|---|
-| ![Home](screenshot/1.png) | ![Dashboard](screenshot/2.png) | ![Add Habit](screenshot/3.png) |
+| <img src="screenshot/1.png" width="200"/> | <img src="screenshot/2.png" width="200"/> | <img src="screenshot/3.png" width="200"/> |
 
 | Select Habit | Attendance |
 |---|---|
-| ![Select Habit](screenshot/4.png) | ![Attendance](screenshot/5.png) |
+| <img src="screenshot/4.png" width="200"/> | <img src="screenshot/5.png" width="200"/> |
 
 ---
 
