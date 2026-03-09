@@ -9,7 +9,7 @@ class AddHabitUseCase {
   Future<void> call({
     required String name,
     required DateTime startDate,
-    DateTime? endDate,
+    required DateTime endDate,
   }) =>
       _repository.add(
         Habit(
