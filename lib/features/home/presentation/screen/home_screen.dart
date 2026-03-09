@@ -7,6 +7,7 @@ import 'package:habittracker/core/router/app_router.dart';
 import 'package:habittracker/core/theme/app_colors.dart';
 import 'package:habittracker/features/home/presentation/bloc/home_bloc.dart';
 import 'package:habittracker/features/home/presentation/bloc/home_event.dart';
+import 'package:habittracker/core/constants/app_strings.dart';
 import 'package:habittracker/features/home/presentation/bloc/home_state.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -57,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                           TextButton(
                             onPressed: () =>
                                 context.read<HomeBloc>().add(const LoadLastSync()),
-                            child: const Text('Retry'),
+                            child: const Text(AppStrings.retry),
                           ),
                         ],
                       );
@@ -70,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                         return Column(
                           children: [
                             const Text(
-                              'Last activity',
+                              AppStrings.lastActivity,
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -90,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                         );
                       } else {
                         return const Text(
-                          'Start your first habit today!',
+                          AppStrings.startFirstHabit,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 22,
@@ -123,7 +124,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     child: const Text(
-                      'Log Activity',
+                      AppStrings.logActivity,
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                     ),
                   ),

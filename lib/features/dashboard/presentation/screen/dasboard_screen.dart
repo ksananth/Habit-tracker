@@ -8,6 +8,7 @@ import 'package:habittracker/features/dashboard/presentation/bloc/dashboard_bloc
 import 'package:habittracker/features/dashboard/presentation/bloc/dashboard_event.dart';
 import 'package:habittracker/features/dashboard/presentation/bloc/dashboard_state.dart';
 import 'package:habittracker/features/dashboard/presentation/widgets/dashboard_empty.dart' show DashboardEmptyView;
+import 'package:habittracker/core/constants/app_strings.dart';
 import 'package:habittracker/features/dashboard/presentation/widgets/habit_list.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -34,7 +35,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         backgroundColor: AppColors.white,
         appBar: AppBar(
           title: const Text(
-            'My Habits',
+            AppStrings.myHabits,
             style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.dark),
           ),
           backgroundColor: AppColors.white,
