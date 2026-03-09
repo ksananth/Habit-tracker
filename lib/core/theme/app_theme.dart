@@ -7,11 +7,13 @@ abstract class AppTheme {
     useMaterial3: true,
     colorSchemeSeed: _seedColor,
     brightness: Brightness.light,
+    fontFamily: 'Poppins',
   );
 
   static final dark = ThemeData(
     useMaterial3: true,
     colorSchemeSeed: _seedColor,
     brightness: Brightness.dark,
+    fontFamily: 'Poppins',
   );
 }
